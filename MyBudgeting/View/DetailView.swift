@@ -21,6 +21,10 @@ struct DetailView: View {
                 .scaledToFit()
                 .frame(height: 200)
                 .cornerRadius(10)
+                .accessibility(label: Text("Method Image"))
+                .accessibility(value: Text(methods.imageName))
+                .accessibility(hint: Text("Method Image"))
+                .accessibility(identifier: "ImageFile")
             
             Text(methods.title)
                 .fontWeight(.semibold)
@@ -28,10 +32,19 @@ struct DetailView: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+                .accessibility(label: Text("Method Title"))
+                .accessibility(value: Text(methods.title))
+                .accessibility(hint: Text("Method Title"))
+                .accessibility(identifier: "TitleText")
             
             Text(methods.description)
                 .font(.body)
                 .padding()
+                .accessibility(label: Text("Description"))
+                .accessibility(value: Text(methods.description))
+                .accessibility(hint: Text("Method Des"))
+                .accessibility(identifier: "DesctiptionText")
+
             
             Spacer()
             
@@ -40,10 +53,16 @@ struct DetailView: View {
                     .bold()
                     .font(.title3)
                     .frame(width: 300, height: 50)
-                    .background(Color(.systemBlue))
+                    .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
+                    .accessibility(label: Text("Reference"))
+                    .accessibility(value: Text("URL is \(methods.url)"))
+                    .accessibility(hint: Text("Go to Method Reference"))
+                    .accessibility(identifier: "ReferenceButton")
+//                    .contrast(-1)
+//                    .overlay(Text("1"))
             })
         }
         .navigationTitle("Method Detail").navigationBarTitleDisplayMode(.inline)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B885EED328193CE300EEE262 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885EED228193CE300EEE262 /* LaunchScreenView.swift */; };
 		B89F563A2817CB3800D3F0F6 /* MyBudgetingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F56392817CB3800D3F0F6 /* MyBudgetingApp.swift */; };
 		B89F563C2817CB3800D3F0F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F563B2817CB3800D3F0F6 /* ContentView.swift */; };
 		B89F563E2817CB3B00D3F0F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B89F563D2817CB3B00D3F0F6 /* Assets.xcassets */; };
@@ -14,6 +15,9 @@
 		B89F564B2817CB3B00D3F0F6 /* MyBudgetingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F564A2817CB3B00D3F0F6 /* MyBudgetingTests.swift */; };
 		B89F56552817CB3B00D3F0F6 /* MyBudgetingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F56542817CB3B00D3F0F6 /* MyBudgetingUITests.swift */; };
 		B89F56572817CB3B00D3F0F6 /* MyBudgetingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F56562817CB3B00D3F0F6 /* MyBudgetingUITestsLaunchTests.swift */; };
+		B89F56662817F1B500D3F0F6 /* MethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F56652817F1B500D3F0F6 /* MethodsView.swift */; };
+		B89F5668281839AF00D3F0F6 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F5667281839AF00D3F0F6 /* Methods.swift */; };
+		B89F56702818537300D3F0F6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F566F2818537300D3F0F6 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B885EED228193CE300EEE262 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		B89F56362817CB3800D3F0F6 /* MyBudgeting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBudgeting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B89F56392817CB3800D3F0F6 /* MyBudgetingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudgetingApp.swift; sourceTree = "<group>"; };
 		B89F563B2817CB3800D3F0F6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +49,9 @@
 		B89F56502817CB3B00D3F0F6 /* MyBudgetingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyBudgetingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B89F56542817CB3B00D3F0F6 /* MyBudgetingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudgetingUITests.swift; sourceTree = "<group>"; };
 		B89F56562817CB3B00D3F0F6 /* MyBudgetingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBudgetingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B89F56652817F1B500D3F0F6 /* MethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodsView.swift; sourceTree = "<group>"; };
+		B89F5667281839AF00D3F0F6 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
+		B89F566F2818537300D3F0F6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B889AEFF281CF166006976AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B89F5667281839AF00D3F0F6 /* Methods.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B89F562D2817CB3800D3F0F6 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +110,9 @@
 		B89F56382817CB3800D3F0F6 /* MyBudgeting */ = {
 			isa = PBXGroup;
 			children = (
+				B8C162E32826D79900633980 /* View */,
+				B889AEFF281CF166006976AD /* Model */,
 				B89F56392817CB3800D3F0F6 /* MyBudgetingApp.swift */,
-				B89F563B2817CB3800D3F0F6 /* ContentView.swift */,
 				B89F563D2817CB3B00D3F0F6 /* Assets.xcassets */,
 				B89F563F2817CB3B00D3F0F6 /* Preview Content */,
 			);
@@ -125,6 +142,17 @@
 				B89F56562817CB3B00D3F0F6 /* MyBudgetingUITestsLaunchTests.swift */,
 			);
 			path = MyBudgetingUITests;
+			sourceTree = "<group>";
+		};
+		B8C162E32826D79900633980 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B89F563B2817CB3800D3F0F6 /* ContentView.swift */,
+				B885EED228193CE300EEE262 /* LaunchScreenView.swift */,
+				B89F56652817F1B500D3F0F6 /* MethodsView.swift */,
+				B89F566F2818537300D3F0F6 /* DetailView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +285,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B89F5668281839AF00D3F0F6 /* Methods.swift in Sources */,
+				B89F56662817F1B500D3F0F6 /* MethodsView.swift in Sources */,
 				B89F563C2817CB3800D3F0F6 /* ContentView.swift in Sources */,
+				B89F56702818537300D3F0F6 /* DetailView.swift in Sources */,
 				B89F563A2817CB3800D3F0F6 /* MyBudgetingApp.swift in Sources */,
+				B885EED328193CE300EEE262 /* LaunchScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,18 +455,20 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = cip.MyBudgeting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -452,18 +486,20 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = cip.MyBudgeting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

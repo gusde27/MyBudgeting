@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 //for custom method
 
@@ -29,12 +30,31 @@ struct ContentView: View {
     @StateObject var viewModel = MethodViewModel()
     //for alert
     @State private var showAlert = false
+    @State var showModal = false
+    //@Environment(\.dismiss) var dismiss
+
     
     @State var salary: String = ""
     
     @State var persentase: String = ""
     @State var method = ""
     @State var sumPercentage: Double = 0
+    
+//    struct budgetPercentage: Identifiable {
+//        var id = UUID()
+//        var budgetName: String
+//        var percentage: Int
+//    }
+//
+//    struct customBudget: Identifiable {
+//        var id = UUID()
+//        var nameBudget: String
+//        var percentage: [budgetPercentage]
+//    }
+//
+//    @State var pokemonList = [
+//        customBudget(nameBudget: "Custom Method", percentage: [budgetPercentage(budgetName: "naruto", percentage: 10)])
+//    ];
     
     @FocusState private var salaryForm : Bool
     
@@ -50,6 +70,8 @@ struct ContentView: View {
 
     
     var body: some View {
+        
+
         NavigationView {
             VStack {
                 
@@ -58,102 +80,196 @@ struct ContentView: View {
                     Section(header: Text("Budgeting your salary")) {
                         //salary form
                         TextField("Input Salary (IDR)", text: $salary)
+                            .accessibility(label: Text("Form Salary"))
                             .keyboardType(.decimalPad)
                             .focused($salaryForm)
+                            .onReceive(Just(salary)) { newValue in
+                                        let filtered = newValue.filter { "0123456789.".contains($0) }
+                                        if filtered != newValue {
+                                            self.salary = filtered
+                                        }
+                            }
+                            
                         //method form
                         //TextField("Budgeting Method", text: $model.method)
-                        List {
+                        
                             Picker("Budgeting Method", selection: $selectedFlavor) {
                                 Text("50/30/20").tag(Flavor.first)
                                 Text("80/20").tag(Flavor.second)
                                 Text("Li Ka-Shing").tag(Flavor.third)
-                                Text("Custom Method").tag(Flavor.custom)
-                            }
-                        }
+                                Text("Custom method").tag(Flavor.custom)
+                                //try to add automatic
+//                                ForEach(pokemonList) { pokemon in
+//                                    Text("\(pokemon.nameBudget)").tag(Flavor.custom)
+//                                }
+                            }.accessibility(label: Text("Choose Method"))
+
+
+                        //rencananya buat hapus but ga jadi
+//                            .onDisappear{
+//                                if selectedFlavor == Flavor.custom {
+//                                    print("aman")
+//                                } else {
+//                                    viewModel.stocks = []
+//                                    sumPercentage = 0
+//                                }
+//                            }
+                        
                     }
+
                     
                     //list for custom method
                     if Flavor.custom == selectedFlavor {
-                        //for add budgeting
-                        Section(header: Text("Add New Budgeting")) {
-                            
-                            TextField("Input Item", text: $method)
-                                .keyboardType(.alphabet)
-                                .focused($salaryForm)
-                            
-                            TextField("Input Percentage (%)", text: $persentase)
-                                .keyboardType(.decimalPad)
-                                .focused($salaryForm)
-                            
-                            Button(action: {
-                                addNewBudget()
-                                //for Text peringatan
-//                                if sumPercentage > 100 {
-//                                    showAlert = true
-//                                }
-                            }, label: {
-                                Text("Add Budgeting Item")
-//                                    .frame(width: 150, height: 40, alignment: .center)
-//                                    .background(Color.blue)
-//                                    .foregroundColor(.white)
-//                                    .cornerRadius(8)
-                            })
-                            .alert(isPresented: $showAlert) {
-                                Alert(
-                                    title: Text("Input Failed"),
-                                    message: Text("the percentage should not exceed 100%")
-                                )
-                            }
-                            //.padding()
-                            
-                        }.onDisappear{
-                            viewModel.stocks = []
-                            sumPercentage = 0
+                        
+                        Section(){
+                        Button(action: { self.showModal.toggle() }) { // Button to show the modal view by toggling the state
+                                    Text("Make your own budgeting")
+                                }
+                                .sheet(isPresented: $showModal) { // Passing the state to the sheet API
+                                    HStack{
+                                        Button {
+                                            showModal = false
+                                        } label: {
+                                            Text("Cancel")
+                                        }
+                                        .padding()
+                                        .accessibility(label: Text("Cancel")) //accessibility
+                                        
+                                        Spacer()
+                                        Text("Custom Method")
+                                            .bold()
+                                            .padding()
+                                        Spacer()
+                                        
+                                        EditButton()
+                                            .accessibility(label: Text("Edit")) //accessibility
+                                            .padding()
+                                    }
+    
+                                    //form for custom method
+                                    Form {
+                                        //for add budgeting
+                                        Section(header: Text("Add New Budgeting")) {
+                                            
+                                            TextField("Input Item", text: $method)
+                                                .accessibility(label: Text("Form Item")) //accessibility
+                                                .keyboardType(.alphabet)
+                                                .focused($salaryForm)
+                                                
+                                            
+                                            TextField("Input Percentage (%)", text: $persentase)
+                                                .accessibility(label: Text("Form Percentage")) //accessibility
+                                                .keyboardType(.decimalPad)
+                                                .focused($salaryForm)
+                                                .onReceive(Just(persentase)) { newValue in
+                                                            let filtered = newValue.filter { "0123456789.".contains($0) }
+                                                            if filtered != newValue {
+                                                                self.persentase = filtered
+                                                            }
+                                                }
+                                                
+                                            //button
+                                            Button(action: {
+                                                addNewBudget()
+                                            }, label: {
+                                                Text("Add Budgeting Item")
+                                            })
+                                            .alert(isPresented: $showAlert) {
+                                                Alert(
+                                                    title: Text("Input Failed"),
+                                                    message: Text("the percentage should not exceed 100%")
+                                                )
+                                            }
+                                            
+                                        }
+                                        
+                                        //for result budgeting
+                                        if viewModel.stocks.count != 0 {
+                                            Section(header: Text("Your Custom Budgeting")) {
+                                                
+                                                List {
+                                                    ForEach(viewModel.stocks) { StockMethod in
+                                                        MethodItem(title_method: StockMethod.title, value_method: StockMethod.value)
+                                                    }
+                                                    .onDelete(perform: { IndexSet in
+                                                        for row in IndexSet{
+                                                            print(row)
+                                                            print(viewModel.stocks[row].value)
+                                                            sumPercentage -= viewModel.stocks[row].value
+                                                        }
+                                                        viewModel.stocks.remove(atOffsets: IndexSet)
+                                                        //print(viewModel.stocks.remove(atOffsets: IndexSet))
+                                                    })
+                                                }//end list
+                                                
+                                            } //end of section
+                                        }
+                                        
+                                    }//end of form
+                                    
+                                    Button(action: {
+                                        calculateSalary()
+                                        showModal = false
+                                    }, label: {
+                                        Text("Calculate")
+                                            .bold()
+                                            .font(.title3)
+                                            .frame(width: 300, height: 50, alignment: .center)
+                                            .background(Color.blue)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(8)
+                                    })
+                                    .accessibility(label: Text("Calculate")) //accessibility
+                                    .padding()
+                                }//end of sheet
                         }
                         
-                        //for result budgeting
-                        if viewModel.stocks.count != 0 {
-                            Section(header: Text("Your Custom Budgeting")) {
-                                List {
-                                    ForEach(viewModel.stocks) { StockMethod in
-                                        MethodItem(title_method: StockMethod.title, value_method: StockMethod.value)
-                                    }
-                                }
-                            }
-                        }
                         
                     } //end if
                     //end of list custom method
+                
+                    
                     
                     NavigationLink(destination: MethodsView()) {
                         Button(action: {
-                            
+                            print("go to methods page")
                         }, label: {
-                            Text("Check Methods")
+                            Text("Check Methods") //accessibility
                         })
                     }
+                    .accessibility(label: Text("Check Methods"))
                     
+                    //for result
                     Section(header: Text("Result")) {
                         //Result
                         Text("\(result)")
+                            .accessibility(label: Text("Result form"))
+                            .accessibility(value: Text("\(result)")) //accessibility
+                            .accessibilityAction(named: Text("Clear")) {
+                                result = ""
+                            }
                     }
                     
                     
-                }
-                //end of form
+                } //end of form
+                
                 Button(action: {
                     calculateSalary()
                 }, label: {
                     Text("Calculate")
+                        .bold()
+                        .font(.title3)
                         .frame(width: 300, height: 50, alignment: .center)
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 })
+                .accessibility(label: Text("Calculate")) //accessibility
                 .padding()
-                .onDisappear{
-                    result = ""
-                }
+//                .onDisappear{
+//                    result = ""
+//                }
+                //tutup button calculate
             }
             .navigationTitle("MyBudgeting")
             .toolbar {
@@ -174,8 +290,14 @@ struct ContentView: View {
     
     //function logic
     func calculateSalary(){
-        print(salary)
-        print(selectedFlavor)
+        
+        if(salary == "" || salary == "."){
+            result = "Salary cannot be empty"
+            return
+        }
+            
+        //print(salary)
+        //print(selectedFlavor)
         
         if selectedFlavor == Flavor.first  {
             metode503020()
@@ -248,7 +370,7 @@ struct ContentView: View {
         let persen_int: Double? = Double(persentase)
         
         sumPercentage += persen_int!
-        
+
         if sumPercentage > 100 {
             print("Melebihi 100%")
             showAlert = true
@@ -257,6 +379,9 @@ struct ContentView: View {
             let newStock = StockMethod(title: method, value: persen_int!)
             viewModel.stocks.append(newStock)
         }
+        
+        //let newStock = StockMethod(title: method, value: persen_int!)
+        //viewModel.stocks.append(newStock)
         
         
         
@@ -298,3 +423,20 @@ struct ContentView_Previews: PreviewProvider {
 
 
 //TextField("Input Salary", value: $model.salary, format: .currency(code: Locale.current.currencyCode ?? "IDR")).keyboardType(.decimalPad)
+
+//for modal
+//struct SheetView: View {
+//   @Environment(\.dismiss) var dismiss
+//
+//    var body: some View {
+//        VStack {
+//           Button {
+//              dismiss()
+//           } label: {
+//               Text("Cancel")
+//           }
+//         }
+//         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+//         .padding()
+//    } //end sheetview
+//}

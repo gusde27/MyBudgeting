@@ -19,8 +19,7 @@ struct MethodsView: View {
                 
                 VStack(alignment: .leading, spacing: 7) {
                     
-                    Text(methodData)
-                    Image(methodData.imageName)
+                    Image(decorative: methodData.imageName)
                         .resizable()
                         .scaledToFit()
                         .frame(height: 200)
@@ -31,16 +30,20 @@ struct MethodsView: View {
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
+
                     
                     Text(methodData.simple_dec)
                         .fontWeight(.regular)
                         .lineLimit(5)
                         .minimumScaleFactor(0.5)
                         .padding(.vertical, 10)
-                    
-                    
                   
                 } //close vstack
+                .accessibilityElement(children: .combine)
+                .accessibility(label: Text("method title is \(methodData.title)"))
+                .accessibility(value: Text("method description is \(methodData.simple_dec)"))
+                .accessibility(hint: Text("Klik for detail of \(methodData.title)"))
+                
             })
             
             
