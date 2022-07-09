@@ -52,9 +52,9 @@ struct ContentView: View {
 //        var percentage: [budgetPercentage]
 //    }
 //
-//    @State var pokemonList = [
-//        customBudget(nameBudget: "Custom Method", percentage: [budgetPercentage(budgetName: "naruto", percentage: 10)])
-//    ];
+    @State var pokemonList = [
+        customBudget(nameBudget: "Test Method", percentage: [budgetPercentage(budgetName: "naruto", percentage: 10)])
+    ];
     
     @FocusState private var salaryForm : Bool
     
@@ -62,7 +62,7 @@ struct ContentView: View {
     @State var result: String = ""
     
     enum Flavor: String, CaseIterable, Identifiable {
-        case first, second, third, custom
+        case first, second, third, custom, pokemonList
         var id: Self { self }
     }
 
@@ -71,7 +71,6 @@ struct ContentView: View {
     
     var body: some View {
         
-
         NavigationView {
             VStack {
                 
@@ -100,20 +99,9 @@ struct ContentView: View {
                                 Text("Custom method").tag(Flavor.custom)
                                 //try to add automatic
 //                                ForEach(pokemonList) { pokemon in
-//                                    Text("\(pokemon.nameBudget)").tag(Flavor.custom)
+//                                    Text("\(pokemon.nameBudget)").tag(Flavor.pokemonList)
 //                                }
                             }.accessibility(label: Text("Choose Method"))
-
-
-                        //rencananya buat hapus but ga jadi
-//                            .onDisappear{
-//                                if selectedFlavor == Flavor.custom {
-//                                    print("aman")
-//                                } else {
-//                                    viewModel.stocks = []
-//                                    sumPercentage = 0
-//                                }
-//                            }
                         
                     }
 
@@ -212,12 +200,6 @@ struct ContentView: View {
                                         showModal = false
                                     }, label: {
                                         Text("Calculate")
-                                            .bold()
-                                            .font(.title3)
-                                            .frame(width: 300, height: 50, alignment: .center)
-                                            .background(Color.blue)
-                                            .foregroundColor(.white)
-                                            .cornerRadius(8)
                                     })
                                     .accessibility(label: Text("Calculate")) //accessibility
                                     .padding()
@@ -307,6 +289,8 @@ struct ContentView: View {
             metode_Li_KaShing()
         } else if selectedFlavor == Flavor.custom {
             custom_method()
+        } else if selectedFlavor == Flavor.pokemonList {
+            metode_pokemon()
         }
         
         //result = salary
@@ -344,6 +328,17 @@ struct ContentView: View {
         let hasilinvest : Double = salary_int! / 100 * 25
 
         result = "30% for life Rp. \(hasilhidup) \n\n20% for Social Rp. \(hasilsosial) \n\n15% for Personal Rp. \(hasildiri) \n\n10% for Entertainment Rp. \(hasiliburan) \n\n25% for Invest Rp. \(hasilinvest)"
+    }
+    
+    func metode_pokemon() {
+        
+        //let salary_int: Double? = Double(salary)
+
+//        if(){
+//
+//        }
+
+        //result = salary_int
     }
     
     //for custom method
@@ -412,6 +407,8 @@ struct ContentView: View {
     
     
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -17,7 +17,7 @@ struct MethodsView: View {
             
             NavigationLink(destination: DetailView(methods: methodData), label: {
                 
-                VStack(alignment: .leading, spacing: 7) {
+                VStack(spacing: 7) {
                     
                     Image(decorative: methodData.imageName)
                         .resizable()

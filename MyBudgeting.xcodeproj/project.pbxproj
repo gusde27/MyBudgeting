@@ -18,6 +18,7 @@
 		B89F56662817F1B500D3F0F6 /* MethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F56652817F1B500D3F0F6 /* MethodsView.swift */; };
 		B89F5668281839AF00D3F0F6 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F5667281839AF00D3F0F6 /* Methods.swift */; };
 		B89F56702818537300D3F0F6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F566F2818537300D3F0F6 /* DetailView.swift */; };
+		B8CE3CBC283C7E560099EB00 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE3CBB283C7E560099EB00 /* UserDefault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		B89F56652817F1B500D3F0F6 /* MethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodsView.swift; sourceTree = "<group>"; };
 		B89F5667281839AF00D3F0F6 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		B89F566F2818537300D3F0F6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		B8CE3CBB283C7E560099EB00 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				B89F5667281839AF00D3F0F6 /* Methods.swift */,
+				B8CE3CBB283C7E560099EB00 /* UserDefault.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B89F5668281839AF00D3F0F6 /* Methods.swift in Sources */,
+				B8CE3CBC283C7E560099EB00 /* UserDefault.swift in Sources */,
 				B89F56662817F1B500D3F0F6 /* MethodsView.swift in Sources */,
 				B89F563C2817CB3800D3F0F6 /* ContentView.swift in Sources */,
 				B89F56702818537300D3F0F6 /* DetailView.swift in Sources */,
@@ -463,12 +467,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cip.MyBudgeting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -494,12 +498,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cip.MyBudgeting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
